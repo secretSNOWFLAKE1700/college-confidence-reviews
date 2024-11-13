@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave a Review - College Confidence Co.</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f4f4f9;
+        }
+        h2 {
+            color: #333;
+        }
+        .review-form {
+            max-width: 400px;
+            width: 100%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .review-form input, .review-form textarea, .review-form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .review-form button {
+            background-color: #4CAF50;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .review-list {
+            max-width: 400px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .review-item {
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .review-item h4 {
+            margin: 0;
+            color: #4CAF50;
+        }
+        .review-item p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Leave a Review for College Confidence Co.</h2>
+
+    <div class="review-form">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="number" id="rating" min="1" max="5" placeholder="Rating (1-5)" required>
+        <textarea id="review" rows="4" placeholder="Write your review here..." required></textarea>
+        <button onclick="submitReview()">Submit Review</button>
+    </div>
+
+    <div class="review-list" id="reviewList">
+        <h3>Reviews:</h3>
+    </div>
+
+    <script>
+        function submitReview() {
+            // Get form values
+            const name = document.getElementById('name').value;
+            const rating = document.getElementById('rating').value;
+            const review = document.getElementById('review').value;
+
+            // Check if all fields are filled
+            if (!name || !rating || !review) {
+                alert("Please fill out all fields.");
+                return;
+            }
+
+            // Create review item
+            const reviewList = document.getElementById('reviewList');
+            const reviewItem = document.createElement('div');
+            reviewItem.classList.add('review-item');
+            reviewItem.innerHTML = `
+                <h4>${name} - Rating: ${rating}/5</h4>
+                <p>${review}</p>
+            `;
+
+            // Add review to the list
+            reviewList.appendChild(reviewItem);
+
+            // Clear the form
+            document.getElementById('name').value = '';
+            document.getElementById('rating').value = '';
+            document.getElementById('review').value = '';
+        }
+    </script>
+
+</body>
+</html>
